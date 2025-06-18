@@ -1,7 +1,8 @@
 const divbotaoiniciar = document.getElementById("IniciarJogo")
 const divcaixaQuiz = document.getElementById("caixaQuiz")
 
-const indicePerguntas = 0
+
+let indicePerguntas = 0
 
 // Arrays
 const perguntas = [
@@ -23,11 +24,11 @@ function IniciarJogo(){
 }
 
 function fecharbotaoinicial(){
-    divbotaoiniciar.innerHTML=""
+    divbotaoiniciar.innerHTML = ""
 }
 
 
-function abrirteladojogo(indice){
+function abrirteladojogo(){
     divcaixaQuiz.classList.add("active");
     
     //adicionando um botao ao painel
@@ -42,10 +43,9 @@ function abrirteladojogo(indice){
 }
 
 function proximapergunta(){
-indicePerguntas++
-if(indicePerguntas < perguntas.length){
-    abrirteladojogo(indicePerguntas)
-}
-
+        indicePerguntas++
+        if(indicePerguntas < perguntas.length){
+            abrirteladojogo()
+    }
 
 }
