@@ -1,24 +1,32 @@
 const divbotaoiniciar = document.getElementById("IniciarJogo")
 const divcaixaQuiz = document.getElementById("caixaQuiz")
 const h2perguntadoquiz = document.getElementById("perguntadoquiz")
+const botaoJogar = document.getElementById("botaoJogar")
+const btnproximapergunta = document.getElementById("btnproximo")
+const opcoesRespostas = document.getElementById("opcoesRespostas")
+const divplacar = document.getElementById("placar")
+
+botaoJogar.addEventListener("click", IniciarJogo)
+btnproximapergunta.addEventListener("click", proximapergunta)
 
 let indicePerguntas = 0
+let respostacorreta = 0 
 
 // Arrays
 const perguntas = [
-    {pergunta:"Qual é o maior deserto do mundo?",opcoes:["Atacama", "Antartica" , "Saara"]},
-    {pergunta:"Qual é a capital do Brasil?",opcoes:["Acre", "Amazonas" , "brasilia"]},
-     {pergunta:"Qual é a capital da Austrália?",opcoes:["Berlim", "Nove York" , "Camberra"]},
-     {pergunta:"Qual é o país com maior população no mundo?",opcoes:["Monaco", "China" , "India"]},
-     {pergunta:" Qual a linha imaginária que atravessa o Brasil?",opcoes:["Feilicidade", "Japão" , "Equador"]},
-     {pergunta:"Qual o oceano que banha o Brasil?",opcoes:["Azul", "Vermelho" , "Atlântico"]},
+    {pergunta:"Qual é o maior deserto do mundo?",opcoes:["Atacama", "Antartida" , "Saara"], respostacorreta:"Antartida"},
+    {pergunta:"Qual é a capital do Brasil?",opcoes:["Acre", "Amazonas" , "Brasilia"], respostacorreta:"Brasilia"},
+     {pergunta:"Qual é a capital da Austrália?",opcoes:["Berlim", "Nove York" , "Camberra"], respostacorreta:"Camberra"},
+     {pergunta:"Qual é o país com maior população no mundo?",opcoes:["Monaco", "China" , "India"], respostacorreta:"India"},
+     {pergunta:" Qual a linha imaginária que atravessa o Brasil?",opcoes:["Feilicidade", "Japão" , "Equador"], respostacorreta:"Equador"},
+     {pergunta:"Qual o oceano que banha o Brasil?",opcoes:["Azul", "Vermelho" , "Atlântico"], respostacorreta:"Atlântico"},
 ]
 
 
 
 
 function IniciarJogo(){
-    fecharbotaoinicial()
+   // fecharbotaoinicial()
       abrirteladojogo()
     
 }
@@ -28,30 +36,61 @@ function fecharbotaoinicial(){
 }
 
 
+
+
 function abrirteladojogo(){
     divcaixaQuiz.classList.add("active");
-
+    
     h2perguntadoquiz.textContent = perguntas [indicePerguntas].pergunta;
-    //adicionando um botao ao painel
+    
+    opcoesRespostas.innerHTML = ""
     perguntas[indicePerguntas].opcoes.forEach(opcao => {
+        
+        const botaopergunta = document.createElement("button");
+        
+        botaopergunta.textContent = opcao
+        
+        
+        botaopergunta.classList.add("answer-btn");
+        botaopergunta.addEventListener("click", () =>validarrespostacorreta(opcao))
+        opcoesRespostas.appendChild(botaopergunta);
+        
+        
+    })
+}
+function validarrespostacorreta(opcaoselecionada){
+    const botoesResposta= opcoesRespostas.querySelectorAll(".answer-btn");
+    botoesResposta.forEach(botao => {
+        if(botao.textContent === perguntas [indicePerguntas].respostacorreta){
+            botao.classList.add("correct")
+        }
+        if(botao.textContent === perguntas && opcaoselecionada!=perguntas[indicePerguntas].respostacorreta){
+            botao.classList.add("incorrect")
+        }
+        botao.disabled = true
+    })
     
-    const botaopergunta = document.createElement("button");
-    //adicionando texto no botao
-    botaopergunta.textContent = opcao
     
-    //adicionar uma classe css no botao
-    botaopergunta.classList.add("answer-btn");
-    opcoesRespostas.appendChild(botaopergunta);
-})
-}
-
-function proximapergunta(){
-        indicePerguntas++
-        if(indicePerguntas < perguntas.length){
-            abrirteladojogo()
-    }
-
-}
-    }
-
-}
+    if(opcaoselecionada === perguntas[indicePerguntas].respostacorreta){
+        respostacorreta++
+        console.log(respostacorreta) }}
+        
+        function proximapergunta(){
+            indicePerguntas++
+            if(indicePerguntas < perguntas.length){
+                abrirteladojogo()
+            } 
+            else{
+                divcaixaQuiz.classList.remove("active")
+                divplacar.classList.add("active")
+                resultado()
+            }
+            
+        }
+        
+        function resultado(){
+         const resultadoplacar = document.getElementById("resultadoplacar");
+         resultadoplacar.textContent = `Você acertou ${respostacorreta} de ${perguntas.length} perguntas`
+        
+        
+        }
