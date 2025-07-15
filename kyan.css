@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Rock+Salt&display=swap');
+@import url("colecao-de-letras-alfabeto-de-graffiti-criativo.zip");
+
+body {
+background-image: url(https://i.gifer.com/8Adn.gif);
+background-size: cover;
+background-repeat: no-repeat;
+
+
+}
+.kyan img{
+    position: absolute;
+    left: 41%;
+    margin-top:  240px;
+    width: 250px;
+    padding: 0px;
+    transition: 0.9s;
+    border-radius: 10px;
+}
+.kyan:hover img{
+    box-shadow: 5px 5px 5px black;
+    transform: scale(1.1);
+}
+.rtr{
+ position: absolute;
+ margin-left: 83%;  
+ width: 300px;  
+    font-family: "Rock Salt", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(255, 238, 0);
+  
+}
+
+.spt img{
+    margin-left: 19px;
+    margin-top: 10px;
+    width: 80px ;
+    transition: ease 0.6s;
+    border-radius: 50px;
+}
+.spt:hover img{
+    box-shadow: 5px 5px 5px black;
+    transform: scale(1.2);
+}
+.ins img{
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 99px ;
+    transition: ease 0.6s;
+    border-radius: 50px;
+}
+
+.ins:hover img{
+    transform: scale(1.2);
+}
+
+.font img{
+    position: absolute;
+    margin-left: 78px;
+    margin-top: 420px;
+    width: 550px;
+}
+
+.disco img{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 410px;
+    width: 100px;
+}
